@@ -167,6 +167,51 @@ footer strong{color:var(--b3);}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 @media(max-width:560px){.products-grid,.cta-row,.spec-layout{flex-direction:column;}.spec-photo{margin:0 auto;}.btn-wa{min-width:unset;}}
+
+/* ── EV Charging Calculator Module ─────────────────────────────────────── */
+.ev-section{background:var(--navy2);border-top:1px solid var(--border);}
+.ev-wrap{max-width:860px;margin:0 auto;padding:68px 20px;}
+.ev-tabs{display:flex;gap:9px;margin-bottom:28px;flex-wrap:wrap;}
+.ev-tab{flex:1;min-width:160px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 18px;color:var(--muted);font-family:'Barlow',sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;text-align:center;}
+.ev-tab:hover{border-color:var(--b2);color:var(--text);}
+.ev-tab.active{background:var(--b1);border-color:var(--b1);color:#fff;box-shadow:0 0 20px rgba(2,132,199,.35);}
+.ev-panel{animation:fdUp .35s ease both;}
+.ev-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;}
+.ev-card-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--white);margin-bottom:4px;display:flex;align-items:center;gap:9px;}
+.ev-card-title svg{flex-shrink:0;}
+.ev-card-sub{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+.ev-fields{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:16px;}
+@media(max-width:560px){.ev-fields{grid-template-columns:1fr;}}
+.ev-field{display:flex;flex-direction:column;gap:5px;}
+.ev-field label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.ev-field input,.ev-field select{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;outline:none;transition:border-color .2s;-moz-appearance:textfield;}
+.ev-field input::-webkit-outer-spin-button,.ev-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.ev-field input:focus,.ev-field select:focus{border-color:var(--b2);}
+.ev-field select{cursor:pointer;}
+.ev-field select option{background:var(--navy);}
+.ev-btn{width:100%;background:var(--b1);border:none;border-radius:10px;padding:13px;color:#fff;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;letter-spacing:.5px;}
+.ev-btn:hover{background:var(--b2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,165,233,.3);}
+.ev-result{display:none;background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:14px;}
+.ev-result.show{display:block;animation:fdUp .3s ease;}
+.ev-res-grid{display:flex;justify-content:space-around;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.ev-res-col{text-align:center;}
+.ev-res-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.ev-res-val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:var(--b3);}
+.ev-res-unit{font-size:11px;color:var(--muted);margin-top:2px;}
+.ev-notice{background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.18);border-left:3px solid var(--b2);border-radius:8px;padding:11px 14px;font-size:11px;color:var(--muted);line-height:1.7;margin-top:10px;}
+.ev-notice strong{color:var(--b3);}
+.ev-revenue-result .ev-res-val{color:var(--green);}
+.ev-charger-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+@media(max-width:560px){.ev-charger-row{grid-template-columns:1fr;}}
+.ev-charger-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all .25s;text-align:center;}
+.ev-charger-card:hover{border-color:var(--b2);transform:translateY(-2px);}
+.ev-charger-card.sel{border-color:var(--b3);background:rgba(56,189,248,.06);}
+.ev-charger-icon{width:64px;height:64px;border-radius:12px;background:var(--navy);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.ev-charger-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--white);}
+.ev-charger-kw{font-size:11px;color:var(--b3);font-weight:600;}
+.ev-charger-desc{font-size:10px;color:var(--muted);line-height:1.5;}
+.ev-tax-note{font-size:10px;color:var(--muted);margin-top:6px;text-align:center;}
+
 </style>
 </head>
 <body>
@@ -298,6 +343,191 @@ footer strong{color:var(--b3);}
     </div>
   </div>
 </div></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EV CHARGING CALCULATOR MODULE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="ev-section" id="ev-calc">
+  <div class="ev-wrap">
+
+    <div class="eyebrow">Calculadoras Inteligentes</div>
+    <h2 class="sec-title">Simuladores de Carregamento VE</h2>
+    <p class="sec-desc">Calcule o tempo de recarga do seu veículo elétrico ou descubra quanto pode faturar com um ponto de carregamento próprio.</p>
+
+    <!-- Tab Buttons -->
+    <div class="ev-tabs">
+      <button class="ev-tab active" id="tab-btn-charge" onclick="evSwitchTab('charge')">&#9889; Simular carregamento</button>
+      <button class="ev-tab" id="tab-btn-revenue" onclick="evSwitchTab('revenue')">&#128176; Simular ganho com recarga</button>
+    </div>
+
+    <!-- ── MÓDULO 1: TEMPO DE CARREGAMENTO ─────────────────────── -->
+    <div class="ev-panel" id="tab-charge">
+
+      <!-- Charger selector cards -->
+      <div class="ev-charger-row">
+        <div class="ev-charger-card sel" id="ccard-7" onclick="evSelectCharger(7)">
+          <div class="ev-charger-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="7" y="2" width="22" height="30" rx="4" fill="#1e3a4f" stroke="#38bdf8" stroke-width="1.5"/>
+              <rect x="11" y="6" width="14" height="8" rx="2" fill="#0ea5e9" opacity=".6"/>
+              <line x1="18" y1="18" x2="18" y2="28" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="18" cy="30" r="2" fill="#38bdf8"/>
+              <rect x="10" y="22" width="16" height="1.5" rx=".75" fill="#38bdf8" opacity=".4"/>
+            </svg>
+          </div>
+          <div class="ev-charger-name">Wallbox 7 kW</div>
+          <div class="ev-charger-kw">7 kW · Monofásico</div>
+          <div class="ev-charger-desc">Ideal para residências e condomínios. Carregamento noturno eficiente.</div>
+        </div>
+        <div class="ev-charger-card" id="ccard-22" onclick="evSelectCharger(22)">
+          <div class="ev-charger-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="2" width="26" height="32" rx="5" fill="#1e3a4f" stroke="#f59e0b" stroke-width="1.5"/>
+              <rect x="9" y="6" width="18" height="10" rx="2" fill="#1e3a4f" stroke="#f59e0b" stroke-width="1"/>
+              <rect x="11" y="8" width="14" height="6" rx="1" fill="#0ea5e9" opacity=".5"/>
+              <line x1="18" y1="20" x2="18" y2="30" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="18" cy="32" r="1.5" fill="#f59e0b"/>
+              <line x1="13" y1="22" x2="23" y2="22" stroke="#f59e0b" stroke-width="1" opacity=".5"/>
+              <line x1="13" y1="25" x2="23" y2="25" stroke="#f59e0b" stroke-width="1" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="ev-charger-name">Wallbox 22 kW</div>
+          <div class="ev-charger-kw">22 kW · Trifásico</div>
+          <div class="ev-charger-desc">Ideal para empresas e frotas. Carregamento rápido com display integrado.</div>
+        </div>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Tempo de Carregamento
+        </div>
+        <div class="ev-card-sub">Informe os dados do seu veículo e do carregador para obter a estimativa.</div>
+
+        <div class="ev-fields">
+          <div class="ev-field" style="grid-column:1/-1;">
+            <label>Modelo do veículo (opcional)</label>
+            <input id="c-model" type="text" placeholder="Ex: BYD Dolphin, Volvo EX30...">
+          </div>
+          <div class="ev-field">
+            <label>Capacidade da bateria (kWh)</label>
+            <input id="c-bat" type="number" min="1" max="200" step="0.1" placeholder="Ex: 60">
+          </div>
+          <div class="ev-field">
+            <label>Potência do carregador (kW)</label>
+            <input id="c-pow" type="number" min="1" max="350" step="0.1" value="7" placeholder="Ex: 7">
+          </div>
+          <div class="ev-field">
+            <label>Carga atual (%)</label>
+            <input id="c-from" type="number" min="0" max="99" step="1" placeholder="Ex: 20">
+          </div>
+          <div class="ev-field">
+            <label>Carga desejada (%)</label>
+            <input id="c-to" type="number" min="1" max="100" step="1" placeholder="Ex: 80">
+          </div>
+        </div>
+
+        <button class="ev-btn" onclick="evCalcCharge()">Calcular tempo de carregamento</button>
+
+        <div class="ev-result" id="charge-result">
+          <div class="ev-res-grid">
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Energia necessária</div>
+              <div class="ev-res-val" id="cr-kwh">—</div>
+              <div class="ev-res-unit">kWh</div>
+            </div>
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Tempo estimado</div>
+              <div class="ev-res-val" id="cr-time">—</div>
+              <div class="ev-res-unit" id="cr-time-unit">horas</div>
+            </div>
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Formato amigável</div>
+              <div class="ev-res-val" id="cr-fmt" style="font-size:20px;">—</div>
+              <div class="ev-res-unit">h min</div>
+            </div>
+          </div>
+          <div class="ev-notice">
+            <strong>Atenção:</strong> Este cálculo é uma estimativa com fator de eficiência de 87%. O tempo real pode variar conforme o veículo, temperatura da bateria e condições da rede elétrica.
+          </div>
+        </div>
+      </div>
+    </div><!-- /tab-charge -->
+
+    <!-- ── MÓDULO 2: REVENDA DE ENERGIA ────────────────────────── -->
+    <div class="ev-panel" id="tab-revenue" style="display:none;">
+      <div class="ev-card">
+        <div class="ev-card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Simulador de Ganho com Recarga
+        </div>
+        <div class="ev-card-sub">Descubra quanto seu ponto de carregamento pode gerar de receita por mês.</div>
+
+        <div class="ev-fields">
+          <div class="ev-field">
+            <label>Capacidade do carregador (kWh por carga)</label>
+            <input id="r-kwh" type="number" min="1" max="200" step="0.1" placeholder="Ex: 40">
+          </div>
+          <div class="ev-field">
+            <label>Preço cobrado por kWh (R$)</label>
+            <input id="r-price" type="number" min="0.1" max="10" step="0.01" placeholder="Ex: 1,80">
+          </div>
+          <div class="ev-field">
+            <label>Cargas realizadas por dia</label>
+            <input id="r-daily" type="number" min="1" max="50" step="1" placeholder="Ex: 5">
+          </div>
+          <div class="ev-field">
+            <label>Dias de operação por mês</label>
+            <input id="r-days" type="number" min="1" max="31" step="1" placeholder="Ex: 25">
+          </div>
+          <div class="ev-field" style="grid-column:1/-1;">
+            <label>Alíquota de impostos (%)</label>
+            <select id="r-tax">
+              <option value="0.20">20% — MEI / Simples Básico</option>
+              <option value="0.25" selected>25% — Simples Nacional médio</option>
+              <option value="0.30">30% — Regime tributário mais elevado</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="ev-btn" onclick="evCalcRevenue()">Calcular receita mensal</button>
+
+        <div class="ev-result ev-revenue-result" id="revenue-result">
+          <div class="ev-res-grid">
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Receita por carga</div>
+              <div class="ev-res-val" id="rr-per">—</div>
+              <div class="ev-res-unit">R$</div>
+            </div>
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Receita bruta/mês</div>
+              <div class="ev-res-val" id="rr-gross">—</div>
+              <div class="ev-res-unit">R$</div>
+            </div>
+            <div class="ev-res-col">
+              <div class="ev-res-lbl">Receita líquida/mês</div>
+              <div class="ev-res-val" id="rr-net">—</div>
+              <div class="ev-res-unit">R$</div>
+            </div>
+          </div>
+          <div class="ev-notice">
+            <strong>Projeção:</strong> Valores estimados com base nos dados fornecidos. Impostos, custos de energia, manutenção e taxas de gateway de pagamento podem impactar a receita real. Consulte um contador para planejamento tributário adequado.
+          </div>
+        </div>
+      </div>
+    </div><!-- /tab-revenue -->
+
+    <!-- CTA WhatsApp -->
+    <div style="text-align:center;margin-top:8px;">
+      <a class="btn-wa" id="ev-wa-btn" href="https://wa.me/5511930751665?text=Olá!%20Usei%20a%20calculadora%20de%20carregamento%20VE%20e%20quero%20saber%20mais%20sobre%20os%20carregadores%20UPSPRO." target="_blank" style="display:inline-flex;max-width:380px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.092.539 4.058 1.485 5.773L.057 23.625a.5.5 0 0 0 .614.657l6.055-1.586A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.785-.57-5.318-1.55l-.38-.24-3.94 1.032.937-3.617-.262-.398A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar com especialista em carregadores VE
+      </a>
+    </div>
+
+  </div>
+</section>
 
 <div class="signoff">
   <div class="signoff-msg">✝ Fé em Deus, Família e vai Corinthians! 🖤🤍</div>
@@ -432,6 +662,88 @@ function setImg(cardIdx,photoIdx){
 
 const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.07});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i*.08)+'s';revObs.observe(el);});
+
+// ── EV Charging Calculator ───────────────────────────────────────────────────
+let evSelectedKw = 7;
+
+function evSelectCharger(kw){
+  evSelectedKw = kw;
+  document.getElementById('ccard-7').classList.toggle('sel', kw === 7);
+  document.getElementById('ccard-22').classList.toggle('sel', kw === 22);
+  document.getElementById('c-pow').value = kw;
+}
+
+function evSwitchTab(tab){
+  const panels = ['charge','revenue'];
+  panels.forEach(p=>{
+    document.getElementById('tab-'+p).style.display = (p===tab)?'block':'none';
+    document.getElementById('tab-btn-'+p).classList.toggle('active', p===tab);
+  });
+}
+
+function evFmtTime(hours){
+  if(hours < 1/60) return '<1 min';
+  const h = Math.floor(hours);
+  const m = Math.round((hours - h) * 60);
+  if(h === 0) return m + ' min';
+  if(m === 0) return h + 'h';
+  return h + 'h ' + m + 'min';
+}
+
+function evFmtBrl(val){
+  return val.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function evCalcCharge(){
+  const bat   = parseFloat(document.getElementById('c-bat').value);
+  const pow   = parseFloat(document.getElementById('c-pow').value);
+  const from  = parseFloat(document.getElementById('c-from').value);
+  const to    = parseFloat(document.getElementById('c-to').value);
+  const res   = document.getElementById('charge-result');
+
+  if(!bat || !pow || isNaN(from) || isNaN(to) || from >= to || bat <= 0 || pow <= 0){
+    res.classList.remove('show');
+    alert('Preencha todos os campos corretamente. A carga desejada deve ser maior que a atual.');
+    return;
+  }
+
+  const eff        = 0.87;
+  const needed     = bat * (to - from) / 100;
+  const rawHours   = needed / pow;
+  const adjHours   = rawHours / eff;
+
+  document.getElementById('cr-kwh').textContent  = needed.toFixed(2);
+  document.getElementById('cr-time').textContent = adjHours.toFixed(2);
+  document.getElementById('cr-fmt').textContent  = evFmtTime(adjHours);
+
+  res.classList.add('show');
+}
+
+function evCalcRevenue(){
+  const kwh   = parseFloat(document.getElementById('r-kwh').value);
+  const price = parseFloat(document.getElementById('r-price').value);
+  const daily = parseFloat(document.getElementById('r-daily').value);
+  const days  = parseFloat(document.getElementById('r-days').value);
+  const tax   = parseFloat(document.getElementById('r-tax').value);
+  const res   = document.getElementById('revenue-result');
+
+  if(!kwh || !price || !daily || !days || kwh<=0 || price<=0 || daily<=0 || days<=0){
+    res.classList.remove('show');
+    alert('Preencha todos os campos corretamente.');
+    return;
+  }
+
+  const perCharge = kwh * price;
+  const gross     = perCharge * daily * days;
+  const net       = gross * (1 - tax);
+
+  document.getElementById('rr-per').textContent   = evFmtBrl(perCharge);
+  document.getElementById('rr-gross').textContent = evFmtBrl(gross);
+  document.getElementById('rr-net').textContent   = evFmtBrl(net);
+
+  res.classList.add('show');
+}
+
 </script>
 
 </body>
