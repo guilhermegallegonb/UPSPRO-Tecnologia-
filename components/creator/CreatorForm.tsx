@@ -110,14 +110,19 @@ export function CreatorForm() {
     setGenerating(true)
     try {
       const id = ensureId()
-      await fetch('/api/tribute', {
+      const res = await fetch('/api/tribute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...stateToApi(state), id }),
       })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        throw new Error(err.error || `Erro ${res.status}`)
+      }
       router.push(`/preview/${id}`)
-    } catch {
-      show('Erro ao gerar. Tente novamente.', 'error')
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Erro ao gerar'
+      show(`Erro ao salvar: ${msg}. Verifique as configurações do Supabase.`, 'error')
       setGenerating(false)
     }
   }
