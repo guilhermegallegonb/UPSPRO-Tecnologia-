@@ -65,13 +65,18 @@ export function CreatorForm() {
     const id = ensureId()
     setSaving(true)
     try {
-      await fetch('/api/tribute', {
+      const res = await fetch('/api/tribute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...stateToApi(state), id }),
       })
-    } catch { /* silencioso */ }
-    finally { setSaving(false) }
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        console.error('[autoSave] erro:', err)
+      }
+    } catch (e) {
+      console.error('[autoSave] exception:', e)
+    } finally { setSaving(false) }
   }
 
   const stateToApi = (s: TributeFormData) => ({
